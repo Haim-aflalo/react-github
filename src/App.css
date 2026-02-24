@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(44, 81, 138);
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  color: white;
+}
+
+.game-board {
+  margin-top: 2%;
+  background-color: rgba(184, 193, 210);
+  width: 50%;
+  height: 50%;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  justify-items: center;
+  align-items: center;
+}
+
+.cell {
+  width: 85%;
+  height: 85%;
+  background-color: rgba(66, 72, 83);
+  cursor: pointer;
+}
+.cell:hover {
+  width: 98%;
+  height: 98%;
+}
+
+.false {
+  background: url('https://png.pngtree.com/png-vector/20190228/ourmid/pngtree-wrong-false-icon-design-template-vector-isolated-png-image_711426.jpg');
+  background-size: cover;
+  width: 85%;
+  height: 100%;
+}
+
+.bomb-cell {
+  background: url('https://png.pngtree.com/png-vector/20190814/ourmid/pngtree-cartoon-bomb-background-and-explosive-light-vector---illustration-png-image_1692128.jpg');
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
