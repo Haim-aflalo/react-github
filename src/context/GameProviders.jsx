@@ -5,7 +5,7 @@ const GameContext = createContext();
 function GameProvider({ children }) {
   const [isWin, setIsWin] = useState(0);
   const [bombs, setBombs] = useState(0);
-  const [time, setTime] = useState(0);
+  const [isLose, setIsLose] = useState(0);
 
   return (
     <GameContext
@@ -14,8 +14,8 @@ function GameProvider({ children }) {
         setIsWin,
         bombs,
         setBombs,
-        time,
-        setTime,
+        isLose,
+        setIsLose,
       }}
     >
       {children}

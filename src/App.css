@@ -3,51 +3,78 @@ body {
   padding: 0;
   width: 100%;
   height: 100vh;
+  box-sizing: border-box;
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  background: radial-gradient(circle, #2c518a 0%, #1a2a44 100%);
 }
 
 #root {
   width: 100%;
-  height: 100%;
-  background-color: rgba(44, 81, 138);
+  height: 99%;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
-  color: white;
+  color: rgb(197, 205, 216);
+}
+
+header {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  width: 100%;
+  height: 7%;
+  margin-top: -5%;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  background-color: rgb(19, 25, 41);
+  box-shadow: 10px 5px 5px black;
+}
+header .title{
+  justify-self: center;
+}
+header p {
+  color: green;
 }
 
 .game-board {
-  margin-top: 2%;
-  background-color: rgba(184, 193, 210);
-  width: 50%;
-  height: 50%;
+  width: 90vw;
+  max-width: 500px;
+  aspect-ratio: 1 / 1;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
-  justify-items: center;
-  align-items: center;
+  gap: 4px;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.cell {
-  width: 85%;
-  height: 85%;
-  background-color: rgba(66, 72, 83);
+.hidden-cell {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
   cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.05);
+  background: radial-gradient(circle, #2c518a 0%, #1a2a44 100%);
 }
-.cell:hover {
-  width: 98%;
-  height: 98%;
+
+.hidden-cell:hover {
+  transform: scale(1.05);
+  z-index: 2;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .false {
-  background: url('https://png.pngtree.com/png-vector/20190228/ourmid/pngtree-wrong-false-icon-design-template-vector-isolated-png-image_711426.jpg');
-  background-size: cover;
-  width: 85%;
-  height: 100%;
+  background: url('/false.png');
+  background-size: 150%;
+  background-position: center;
+  border-radius: 4px;
 }
 
 .bomb-cell {
-  background: url('https://png.pngtree.com/png-vector/20190814/ourmid/pngtree-cartoon-bomb-background-and-explosive-light-vector---illustration-png-image_1692128.jpg');
+  background: url('/bomb.png');
   background-size: cover;
-  width: 100%;
-  height: 100%;
+  background-position: center;
+  border-radius: 4px;
 }

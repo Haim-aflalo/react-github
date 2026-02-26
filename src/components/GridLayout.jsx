@@ -1,46 +1,48 @@
 import { useContext, useEffect, useState } from 'react';
 import { GameContext } from '../context/GameProviders';
-import { createBoard, generateIndex } from './utils';
+import { createBoard } from './utils';
 
 function GridLayout() {
   const { isWin, setIsWin, bombs, setBombs } = useContext(GameContext);
   const [board, setBoard] = useState([]);
-  const [bombsIndex, setBombsIndex] = useState([]);
-  const [bombsFound, setBombsFound] = useState([]);
-  console.log(bombsIndex);
 
   useEffect(() => {
     const newBoard = createBoard();
-    const newBombsIndex = generateIndex();
     setBoard(newBoard);
-    setBombsIndex(newBombsIndex);
-    setBombs(newBombsIndex.length);
+    setBombs(10);
   }, []);
 
   function cellClick(index) {
     if (isWin) return;
-    if (bombsIndex.includes(index) && !bombsFound.includes(index)) {
-      setBombs(bombs - 1);
-      setBombsFound([...bombsFound, index]);
-      console.log(bombsFound, index, board);
-      setBoard(
-        board.map((cell, newIndex) =>
-          bombsFound.includes(newIndex) ? 'bomb-cell' : 'cell',
-        ),
-      );
-    } else {
-      setBoard(
-        board.map((cell, newIndex) => (index === newIndex ? 'false' : 'cell')),
-      );
+    setBoard(
+      board.map((cell, clickIndex) => {
+        if (clickIndex === index) {
+          return {
+            ...cell,
+            status: cell.type === 'bomb' ? 'bomb-cell' : 'false',
+          };
+        }
+        return cell;
+      }),
+    );
+    if (board[index].type === 'bomb' && board[index].status === 'hidden-cell') {
+      if (bombs - 1 === 0) {
+        setBombs((prev) => prev - 1);
+        setIsWin(true);
+      } else {
+        setBombs((prev) => prev - 1);
+      }
     }
   }
 
   return (
     <div className="game-board">
       {board.map((cell, index) => (
-        <button key={index} className={cell} onClick={() => cellClick(index)}>
-          {index}
-        </button>
+        <button
+          key={index}
+          className={cell.status}
+          onClick={() => cellClick(index)}
+        ></button>
       ))}
     </div>
   );
